@@ -1,0 +1,22 @@
+---
+- name: create temporary directory
+  shell: mktemp -d
+  register: tempdir
+  sudo: true
+  tags:
+    - vagrant
+
+- name: download vagrant
+  get_url: url={{ vagrant_url }} dest={{ tempdir.stdout }}/vagrant.deb
+  tags:
+    - vagrant
+
+- name: install vagrant
+  command: dpkg -i {{ tempdir.stdout }}/vagrant.deb
+  tags:
+    - vagrant
+
+- name: cleanup temporary directory
+  file: name={{ tempdir.stdout }} state=absent
+  tags:
+    - vagrant
