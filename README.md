@@ -14,14 +14,14 @@ Usage example
 
 Add this to your playbook:
 
-  - name: Setup for vagrant boxes
-    hosts: all
-    gather_facts: true
-    roles:
-      - ansible-vagrant-role   
+    - name: Setup for vagrant boxes
+      hosts: all
+      gather_facts: true
+      roles:
+        - ansible-vagrant-role   
       
-    vars:
-      vagrant_libvirt_enabled: true #In order to enable libvirt plugin    
+      vars:
+        vagrant_libvirt_enabled: true #In order to enable libvirt plugin    
         
 Requirements
 ------------
