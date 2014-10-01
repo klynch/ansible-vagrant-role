@@ -8,6 +8,20 @@ vagrant authors do not provide a PPA.
 
 [![Build Status](https://travis-ci.org/klynch/ansible-vagrant-role.png?branch=master)](https://travis-ci.org/klynch/ansible-vagrant-role)
 
+Usage example
+------------
+
+Add this to your playbook:
+
+    - name: Setup for vagrant boxes
+      hosts: all
+      gather_facts: true
+      roles:
+        - ansible-vagrant-role   
+      
+      vars:
+        vagrant_libvirt_enabled: true #In order to enable libvirt plugin    
+        
 Requirements
 ------------
 
@@ -22,8 +36,7 @@ Defaults is:
 
 Description:
 
-- ` vagrant_url` - A URL to the vagrant DEB package
-
+- ` vagrant_url` - A URL to the vagrant DEB package 
 
 Dependencies
 ------------
