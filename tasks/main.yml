@@ -38,11 +38,21 @@
 
 - name: vagrant | Install gyoku
   command: gem install gyoku -v '1.2.2'
+  sudo: yes  
   when: vagrant_windows_enabled   
   
 - name: vagrant | Install windows plugin
   command: vagrant plugin install vagrant-windows
   when: vagrant_windows_enabled   
+
+- name: vagrant | Install CFPropertyList
+  command: gem install CFPropertyList -v '2.3.0'
+  sudo: yes
+  when: vagrant_lxc_enabled   
+
+- name: vagrant | Install lxc plugin
+  command: vagrant plugin install vagrant-lxc
+  when: vagrant_lxc_enabled   
 
 - name: vagrant | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
