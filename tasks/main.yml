@@ -38,6 +38,7 @@
 
 - name: vagrant | Install gyoku
   command: gem install gyoku -v '1.2.2'
+  when: ansible_distribution == 'Debian'  
   sudo: yes  
   when: vagrant_windows_enabled   
   
@@ -47,6 +48,7 @@
 
 - name: vagrant | Install CFPropertyList
   command: gem install CFPropertyList -v '2.3.0'
+  when: ansible_distribution == 'Debian'  
   sudo: yes
   when: vagrant_lxc_enabled   
 
