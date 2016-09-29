@@ -2,7 +2,7 @@
 - name: vagrant | Create temporary directory
   shell: mktemp -d
   register: tempdir
-  sudo: true
+  become: yes
   tags:
     - vagrant
 
@@ -38,9 +38,8 @@
 
 - name: vagrant | Install gyoku
   command: gem install gyoku -v '1.2.2'
-  when: ansible_distribution == 'Debian'
-  sudo: yes
-  when: vagrant_windows_enabled
+  when: ansible_distribution == 'Debian' and vagrant_windows_enabled
+  become: yes
 
 - name: vagrant | Install windows plugin
   command: vagrant plugin install vagrant-windows
@@ -48,9 +47,8 @@
 
 - name: vagrant | Install CFPropertyList
   command: gem install CFPropertyList -v '2.3.0'
-  when: ansible_distribution == 'Debian'
-  sudo: yes
-  when: vagrant_lxc_enabled
+  when: ansible_distribution == 'Debian' and vagrant_lxc_enabled
+  become: yes
 
 - name: vagrant | Install lxc plugin
   command: vagrant plugin install vagrant-lxc
