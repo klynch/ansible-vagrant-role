@@ -74,3 +74,6 @@
   file: name={{ tempdir.stdout }} state=absent
   tags:
     - vagrant
+  changed_when: false    
+  ignore_errors: "{{ ansible_check_mode }}"  
+  become: yes
