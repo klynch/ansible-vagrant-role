@@ -1,5 +1,5 @@
 ---
-vagrant_version: "1.7.1"
+vagrant_version: "2.0.0"
 vagrant_url: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb"
 vagrant_libvirt_enabled: false
 vagrant_windows_enabled: false       #Needed for under vagrant (< 1.6)
