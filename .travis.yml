@@ -21,5 +21,5 @@ script:
   - sudo ansible --version
   #- export ANSIBLE_ROLES_PATH="../"
   - echo localhost > inventory
-  - ansible-playbook --syntax-check -i inventory role.yml
-  - ansible-playbook -i inventory role.yml --connection=local --sudo -vvvv
+  - sudo ansible-playbook --syntax-check -i inventory role.yml
+  - sudo ansible-playbook -i inventory role.yml --connection=local --sudo -vvvv
