@@ -50,7 +50,7 @@
 - name: vagrant | Install windows plugin
   command: vagrant plugin install vagrant-windows
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_windows_enabled
 
 - name: vagrant | Install CFPropertyList
@@ -61,38 +61,38 @@
 - name: vagrant | Install lxc plugin
   command: vagrant plugin install vagrant-lxc
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_lxc_enabled
 
 - name: vagrant | Install vbguest plugin
   command: vagrant plugin install vagrant-vbguest
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_vbguest_enabled
 
 - name: vagrant | Install hosts plugin
   command: vagrant plugin install vagrant-hosts
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_hosts_enabled
 
 - name: vagrant | Install share plugin
   command: vagrant plugin install vagrant-share
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_share_enabled
 
 - name: vagrant | Install winrm plugin
   command: vagrant plugin install vagrant-winrm
   become: yes
-  ignore_errors: yes   
+  ignore_errors: yes
   when: vagrant_winrm_enabled
 
 - name: vagrant | Cleanup temporary directory
-  file: name={{ tempdir.stdout }} state=absent
+  file: name={{ vagrant_dir_tmp }} state=absent
   become: yes
   tags:
     - vagrant
-  changed_when: false    
-  ignore_errors: "{{ ansible_check_mode }}"  
+  changed_when: false
+  ignore_errors: yes
   become: yes
