@@ -90,7 +90,6 @@
 
 - name: vagrant | Cleanup temporary directory
   file: name={{ vagrant_dir_tmp }} state=absent
-  become: yes
   tags:
     - vagrant
   changed_when: false
