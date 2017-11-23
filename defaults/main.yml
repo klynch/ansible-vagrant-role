@@ -8,4 +8,5 @@ vagrant_vbguest_enabled: false
 vagrant_hosts_enabled: false
 vagrant_share_enabled: false
 vagrant_winrm_enabled: false
-vagrant_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+#vagrant_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+vagrant_dir_tmp: "{{ tempdir.stdout }}"
