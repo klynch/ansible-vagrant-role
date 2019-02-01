@@ -15,7 +15,7 @@
     - libvirt-dev
     
 - name: vagrant | Download vagrant
-  get_url: url={{ vagrant_url }}.deb dest={{ vagrant_dir_tmp }}/vagrant.deb force=yes
+  get_url: url="{{ vagrant_url }}.deb" dest={{ vagrant_dir_tmp }}/vagrant.deb force=yes
   become: yes
   tags:
     - vagrant

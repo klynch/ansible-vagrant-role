@@ -10,5 +10,5 @@
   
 - name: Install Vagrant
   yum:
-    name: {{ vagrant_url }}.rpm
+    name: "{{ vagrant_url }}.rpm"
     state: present
