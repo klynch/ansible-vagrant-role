@@ -6,7 +6,7 @@
     - libxslt-devel
     - libxml2-devel
     - libvirt-devel
-  become: yes
+  become: true
   
 - name: Install Vagrant
   yum:
