@@ -1,9 +1,11 @@
 - name: vagrant | Create temporary directory
-  shell: mktemp -d
+  tempfile:
+    state: directory
+    suffix: staging
+#    path: "{{ lookup('env', 'HOME') }}"
   register: tempdir
+  changed_when: false
   become: true
-  tags:
-    - vagrant
 
 - name: vagrant | Install libvirt requirements (Debian only)
   apt: pkg={{ item }} state=present
