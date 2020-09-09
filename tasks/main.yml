@@ -1,10 +1,10 @@
 ---
 
-- import_tasks: RedHat.yml
+- include: RedHat.yml
   when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat')
 
-- import_tasks: Ubuntu.yml
+- include: Ubuntu.yml
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
 
-- import_tasks: plugin.yml
+- include: plugin.yml
 #  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
