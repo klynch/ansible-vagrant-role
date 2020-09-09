@@ -1,0 +1,14 @@
+
+- name: vagrant | Install libvirt requirements (CentOS only)
+  yum: pkg={{ item }} state=present
+  when: ansible_distribution == 'CentOS' and vagrant_libvirt_enabled
+  with_items:
+    - libxslt-devel
+    - libxml2-devel
+    - libvirt-devel
+  become: true
+  
+- name: Install Vagrant
+  yum:
+    name: "{{ vagrant_url }}.rpm"
+    state: present

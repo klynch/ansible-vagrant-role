@@ -1,0 +1,53 @@
+---
+
+- name: vagrant | Install libvirt plugin
+  command: vagrant plugin install vagrant-libvirt
+  become: true
+  ignore_errors: yes
+  when: vagrant_libvirt_enabled
+
+- name: vagrant | Install gyoku
+  command: gem install gyoku -v '1.2.2'
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and vagrant_windows_enabled
+  become: true
+
+- name: vagrant | Install windows plugin
+  command: vagrant plugin install vagrant-windows
+  become: true
+  ignore_errors: yes
+  when: vagrant_windows_enabled
+
+- name: vagrant | Install CFPropertyList
+  command: gem install CFPropertyList -v '2.3.0'
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and vagrant_lxc_enabled
+  become: true
+
+- name: vagrant | Install lxc plugin
+  command: vagrant plugin install vagrant-lxc
+  become: true
+  ignore_errors: yes
+  when: vagrant_lxc_enabled
+
+- name: vagrant | Install vbguest plugin
+  command: vagrant plugin install vagrant-vbguest
+  become: true
+  ignore_errors: yes
+  when: vagrant_vbguest_enabled
+
+- name: vagrant | Install hosts plugin
+  command: vagrant plugin install vagrant-hosts
+  become: true
+  ignore_errors: yes
+  when: vagrant_hosts_enabled
+
+- name: vagrant | Install share plugin
+  command: vagrant plugin install vagrant-share
+  become: true
+  ignore_errors: yes
+  when: vagrant_share_enabled
+
+- name: vagrant | Install winrm plugin
+  command: vagrant plugin install vagrant-winrm
+  become: true
+  ignore_errors: yes
+  when: vagrant_winrm_enabled

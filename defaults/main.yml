@@ -1,11 +1,14 @@
 ---
-vagrant_version: "1.6.3"
-vagrant_url: "https://dl.bintray.com/mitchellh/vagrant/vagrant_{{ vagrant_version }}_x86_64.deb"
+vagrant_version: "2.2.10"
+vagrant_url_base: "https://releases.hashicorp.com/vagrant"
+vagrant_url_arch: "x86_64"
+vagrant_url: "{{ vagrant_url_base }}/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ vagrant_url_arch }}"     # add suffix .deb or .rmp
 vagrant_libvirt_enabled: false
-vagrant_windows_enabled: false       #Needed for under vagrant (< 1.6)
+vagrant_windows_enabled: false       # Needed for under vagrant (< 1.6)
 vagrant_lxc_enabled: false
 vagrant_vbguest_enabled: false
 vagrant_hosts_enabled: false
 vagrant_share_enabled: false
 vagrant_winrm_enabled: false
 vagrant_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+# vagrant_dir_tmp: "{{ tempdir.stdout }}"

@@ -1,78 +1,10 @@
 ---
-- name: vagrant | Create temporary directory
-  shell: mktemp -d
-  register: tempdir
-  sudo: true
-  tags:
-    - vagrant
 
-- name: vagrant | Download vagrant
-  get_url: url={{ vagrant_url }} dest={{ vagrant_dir_tmp }}/vagrant.deb force=yes
-  tags:
-    - vagrant
+- include: RedHat.yml
+  when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat')
 
-- name: vagrant | Install vagrant
-  command: dpkg -i {{ vagrant_dir_tmp }}/vagrant.deb
-  tags:
-    - vagrant
+- include: Ubuntu.yml
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
 
-- name: vagrant | Install libvirt requirements (Debian only)
-  apt: pkg={{ item }} state=present
-  when: ansible_distribution == 'Debian' and vagrant_libvirt_enabled
-  with_items:
-    - libxslt-dev
-    - libxml2-dev
-    - libvirt-dev
-
-- name: vagrant | Install libvirt requirements (CentOS only)
-  yum: pkg={{ item }} state=present
-  when: ansible_distribution == 'CentOS' and vagrant_libvirt_enabled
-  with_items:
-    - libxslt-devel
-    - libxml2-devel
-    - libvirt-devel
-
-- name: vagrant | Install libvirt plugin
-  command: vagrant plugin install vagrant-libvirt
-  when: vagrant_libvirt_enabled
-
-- name: vagrant | Install gyoku
-  command: gem install gyoku -v '1.2.2'
-  when: ansible_distribution == 'Debian'
-  sudo: yes
-  when: vagrant_windows_enabled
-
-- name: vagrant | Install windows plugin
-  command: vagrant plugin install vagrant-windows
-  when: vagrant_windows_enabled
-
-- name: vagrant | Install CFPropertyList
-  command: gem install CFPropertyList -v '2.3.0'
-  when: ansible_distribution == 'Debian'
-  sudo: yes
-  when: vagrant_lxc_enabled
-
-- name: vagrant | Install lxc plugin
-  command: vagrant plugin install vagrant-lxc
-  when: vagrant_lxc_enabled
-
-- name: vagrant | Install vbguest plugin
-  command: vagrant plugin install vagrant-vbguest
-  when: vagrant_vbguest_enabled
-
-- name: vagrant | Install hosts plugin
-  command: vagrant plugin install vagrant-hosts
-  when: vagrant_hosts_enabled
-
-- name: vagrant | Install share plugin
-  command: vagrant plugin install vagrant-share
-  when: vagrant_share_enabled
-
-- name: vagrant | Install winrm plugin
-  command: vagrant plugin install vagrant-winrm
-  when: vagrant_winrm_enabled
-
-- name: vagrant | Cleanup temporary directory
-  file: name={{ tempdir.stdout }} state=absent
-  tags:
-    - vagrant
+- include: plugin.yml
+#  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
