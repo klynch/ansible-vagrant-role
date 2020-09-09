@@ -37,7 +37,7 @@ virtualenv:
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq python-apt python-pycurl
-  - sudo apt-get install -qq curl
+ - sudo apt-get install -qq curl
 install:
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
@@ -47,7 +47,7 @@ install:
 
   # Add ansible.cfg to pick up roles path.
   #- "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
-  
+
 script:
   # Check ansible version
   - ansible --version
