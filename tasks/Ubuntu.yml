@@ -8,7 +8,7 @@
   become: true
 
 - name: vagrant | Install libvirt requirements (Debian only)
-  apt: pkg={{ item }} state=present
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state={{ util_pkg_state|default('present') }} update_cache=yes"
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and vagrant_libvirt_enabled
   become: true
   with_items:
@@ -17,7 +17,10 @@
     - libvirt-dev
     
 - name: vagrant | Download vagrant
-  get_url: url="{{ vagrant_url }}.deb" dest={{ vagrant_dir_tmp }}/vagrant.deb force=yes
+  get_url:
+    url: "{{ vagrant_url }}.deb"
+    dest: "{{ vagrant_dir_tmp }}/vagrant.deb"
+    force: yes
   become: true
   tags:
     - vagrant

@@ -1,3 +1,4 @@
+---
 
 - name: vagrant | Install libvirt plugin
   command: vagrant plugin install vagrant-libvirt
